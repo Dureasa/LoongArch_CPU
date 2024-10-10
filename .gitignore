@@ -1,4 +1,4 @@
 # Ignore specific directories
 loongarch_cpu.cache/
-rtl/loongarch_cpu.hw/
+loongarch_cpu.hw/
 loongarch_cpu.ip_user_files/
