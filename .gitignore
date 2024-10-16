@@ -2,3 +2,4 @@
 loongarch_cpu.cache/
 loongarch_cpu.hw/
 loongarch_cpu.ip_user_files/
+loongarch_cpu.xpr
