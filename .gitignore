@@ -2,4 +2,6 @@
 loongarch_cpu.cache/
 loongarch_cpu.hw/
 loongarch_cpu.ip_user_files/
+loongarch_cpu.sim/
+loongarch_cpu.runs/
 loongarch_cpu.xpr
