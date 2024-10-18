@@ -7,14 +7,6 @@ module mux1(
     output wire [31:0]  pc_in       // npc
 );
 
-// always @(*) begin
-//     if (jump) begin
-//         pc_in = npc2;
-//     end else begin
-//         pc_in = npc1;
-//     end
-// end
-
-assign pc_in = jump ? npc2 : npc1;
+    assign pc_in = jump ? npc2 : npc1;
 
 endmodule
