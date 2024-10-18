@@ -31,12 +31,14 @@ module imm_gen (
             (op == 6'b000111)) begin 
             immediate <= {instruction_id[24:5], 12'b0};           
         end  
-        // ADDI.W, ST.W, LD.W
+        // ADDI.W, ST.W, LD.W, ANDI, ORI, XORI
         else if ((op == 6'b000000) ||
             (op == 6'b001010)) begin 
             if ((fun == 4'b1010) || (fun == 4'b0110)) begin
                 immediate <= {{20{instruction_id[21]}}, instruction_id[21:10]};
-            end else begin
+            end 
+            else if (fun == )
+            else begin
                 immediate <= 32'b0;
             end
         end else begin
