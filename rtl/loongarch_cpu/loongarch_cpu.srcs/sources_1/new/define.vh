@@ -14,7 +14,6 @@
 `define     B            6'b010100
 `define     BL           6'b010101
 
-
 /*            Fun1        */
 // AL
 `define     AL_R    4'b0000
@@ -25,7 +24,6 @@
 // MEM
 `define     LDW     4'b0010 
 `define     STW     4'b0110
-
 
 /*            Fun2        */
 `define     ADDW    7'b0100000
