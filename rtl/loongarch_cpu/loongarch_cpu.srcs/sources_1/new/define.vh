@@ -1,6 +1,6 @@
 
 /*            Opcode        */
-`define     LU12I        6'b000101
+`define     LU12IW        6'b000101
 `define     PCADDU12I    6'b000111
 `define     AL           6'b000000
 `define     MEM          6'b001010

@@ -13,7 +13,7 @@ module imm_gen (
         // opcode
         case (op)
             // LU12I.W, PCADDU12I
-            `LU12I: immediate = {instruction_id[24:5], 12'b0};
+            `LU12IW: immediate = {instruction_id[24:5], 12'b0};
             `PCADDU12I: immediate = {instruction_id[24:5], 12'b0};
 
             // BEQ, BNE, BLT, BGE, BLTU, BGEU

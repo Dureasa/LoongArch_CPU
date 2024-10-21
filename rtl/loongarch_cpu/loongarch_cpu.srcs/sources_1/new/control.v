@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`include "define.vh"
 
 module control (
     input [5:0]     opcode,
