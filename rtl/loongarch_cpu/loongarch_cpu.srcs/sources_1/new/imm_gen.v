@@ -13,36 +13,36 @@ module imm_gen (
         // opcode
         case (op)
             // LU12I.W, PCADDU12I
-            `LU12I: immediate <= {instruction_id[24:5], 12'b0};
-            `PCADDU12I: immediate <= {instruction_id[24:5], 12'b0};
+            `LU12I: immediate = {instruction_id[24:5], 12'b0};
+            `PCADDU12I: immediate = {instruction_id[24:5], 12'b0};
 
             // BEQ, BNE, BLT, BGE, BLTU, BGEU
-            `BEQ: immediate <= {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
-            `BNE: immediate <= {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
-            `BLT: immediate <= {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
-            `BGE: immediate <= {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
-            `BLTU: immediate <= {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};
-            `BGEU: immediate <= {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};
+            `BEQ: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
+            `BNE: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
+            `BLT: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
+            `BGE: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
+            `BLTU: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};
+            `BGEU: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};
 
             // B, BL
-            `B: immediate <= {{4{instruction_id[9]}}, instruction_id[9:0], instruction_id[25:10], 2'b0};
-            `BL: immediate <= {{4{instruction_id[9]}}, instruction_id[9:0], instruction_id[25:10], 2'b0};
+            `B: immediate = {{4{instruction_id[9]}}, instruction_id[9:0], instruction_id[25:10], 2'b0};
+            `BL: immediate = {{4{instruction_id[9]}}, instruction_id[9:0], instruction_id[25:10], 2'b0};
 
             // MEM (LDW, STW)
-            `MEM: immediate <= {{20{instruction_id[21]}}, instruction_id[21:10]};
+            `MEM: immediate = {{20{instruction_id[21]}}, instruction_id[21:10]};
 
             // AL (ANDI, ORI, XORI)
             `AL: begin
                 case (fun1)
-                    `ANDI: immediate <= {{20{1'b0}}, instruction_id[21:10]};
-                    `ORI: immediate <= {{20{1'b0}}, instruction_id[21:10]};
-                    `XORI: immediate <= {{20{1'b0}}, instruction_id[21:10]};
-                    `ADDIW: immediate <= {{20{instruction_id[21]}}, instruction_id[21:10]};
-                    default: immediate <= 32'b0;
+                    `ANDI: immediate = {{20{1'b0}}, instruction_id[21:10]};
+                    `ORI: immediate = {{20{1'b0}}, instruction_id[21:10]};
+                    `XORI: immediate = {{20{1'b0}}, instruction_id[21:10]};
+                    `ADDIW: immediate = {{20{instruction_id[21]}}, instruction_id[21:10]};
+                    default: immediate = 32'b0;
                 endcase
             end 
             
-            default: immediate <= 32'b0;
+            default: immediate = 32'b0;
 
         endcase
     end
