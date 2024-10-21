@@ -6,6 +6,6 @@ module control (
     output [5:0]    ctrl_signal
 );
 
-
+    
     
 endmodule
