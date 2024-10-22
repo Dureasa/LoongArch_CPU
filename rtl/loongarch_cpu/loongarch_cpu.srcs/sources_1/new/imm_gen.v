@@ -23,6 +23,7 @@ module imm_gen (
             `BGE: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
             `BLTU: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};
             `BGEU: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};
+            `JIRL: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};
 
             // B, BL
             `B: immediate = {{4{instruction_id[9]}}, instruction_id[9:0], instruction_id[25:10], 2'b0};
