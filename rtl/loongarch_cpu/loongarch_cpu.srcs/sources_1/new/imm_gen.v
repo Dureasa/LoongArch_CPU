@@ -12,11 +12,11 @@ module imm_gen (
     always @(*) begin
         // opcode
         case (op)
-            // LU12I.W, PCADDU12I
+            // LU12IW, PCADDU12I
             `LU12IW: immediate = {instruction_id[24:5], 12'b0};
             `PCADDU12I: immediate = {instruction_id[24:5], 12'b0};
 
-            // BEQ, BNE, BLT, BGE, BLTU, BGEU
+            // BEQ, BNE, BLT, BGE, BLTU, BGEU, JIRL
             `BEQ: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
             `BNE: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            
             `BLT: immediate = {{14{instruction_id[25]}},{instruction_id[25:10], 2'b0}};            

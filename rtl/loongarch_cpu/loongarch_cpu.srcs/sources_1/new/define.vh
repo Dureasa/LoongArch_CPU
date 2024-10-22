@@ -26,6 +26,7 @@
 `define     STW     4'b0110
 
 /*            Fun2        */
+// AL_R
 `define     ADDW    7'b0100000
 `define     SUBW    7'b0100010
 `define     AND     7'b0101010
