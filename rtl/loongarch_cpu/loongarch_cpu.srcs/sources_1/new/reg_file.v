@@ -12,7 +12,7 @@ module reg_file(
     output reg [31:0]   read_data2      // Read data 2
 );
 
-    reg [31:0] gr [0:31];
+    reg [31:0] gr [31:0];
 
     // Read logic
     always @(*) begin
@@ -28,10 +28,14 @@ module reg_file(
             for (i = 0; i < 32; i = i + 1) begin
                 gr[i] <= 32'b0;
             end
-            disable fork;
         end else if (RegWrite) begin
             // Write enable signal is active, write data to the register
-            gr[write_addr] <= write_data; 
+            // Make sure No.0 Reg is always 0!
+            if (write_addr != 0) begin
+                gr[write_addr] <= write_data; 
+            end else begin
+                gr[0] <= 32'b0;
+            end
         end
     end
 

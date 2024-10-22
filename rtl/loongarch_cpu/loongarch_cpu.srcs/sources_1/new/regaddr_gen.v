@@ -33,10 +33,15 @@ module regaddr_gen (
                 reg_rs2 = zero;
                 reg_rd = third;                
             end
-            `B, `BL: begin
+            `B: begin
                 reg_rs1 = zero;
                 reg_rs2 = zero;
                 reg_rd = zero;                
+            end
+            `BL: begin
+                reg_rs1 = zero;
+                reg_rs2 = zero;
+                reg_rd = 5'b00001;                
             end
             `AL: begin
                 case (fun1)
