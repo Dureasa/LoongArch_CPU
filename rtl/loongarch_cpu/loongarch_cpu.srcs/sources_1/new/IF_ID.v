@@ -9,14 +9,14 @@ module IF_ID(
     output reg [31:0] instruction_id
 );
 
-always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        pc_id <= 32'b0;
-        instruction_id <= 32'b0;
-    end else begin
-        pc_id <= pc_if;
-        instruction_id <= instruction_if;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            pc_id <= 32'b0;
+            instruction_id <= 32'b0;
+        end else begin
+            pc_id <= pc_if;
+            instruction_id <= instruction_if;
+        end
     end
-end
 
 endmodule

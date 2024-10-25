@@ -3,7 +3,7 @@
 module inst_mem(
     input [31:0]        addr,  // 32 bit address
     output reg [31:0]   inst   // 32 bit data output
-    );
+);
     
     reg [31:0] mem [0:63];
     integer i;
