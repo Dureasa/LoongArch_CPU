@@ -18,7 +18,7 @@ module ID_EX (
     output reg          Memread,
     output reg          Memwrite,
     output reg          ALUsrc,
-    output reg          pc_rs1_sel,      
+    output reg          pc_rs1_sel,
     output reg [31:0]   pc_ex,
     output reg [31:0]   data1,
     output reg [31:0]   data2,
