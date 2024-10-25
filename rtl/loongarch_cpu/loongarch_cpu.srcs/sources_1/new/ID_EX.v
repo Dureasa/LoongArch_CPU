@@ -19,7 +19,7 @@ module ID_EX (
     output reg          Memwrite,
     output reg          ALUsrc,
     output reg          pc_rs1_sel,
-    output reg [31:0]   pc_ex,
+    output reg [31:0]   pc,
     output reg [31:0]   data1,
     output reg [31:0]   data2,
     output reg [31:0]   immediate,
@@ -44,7 +44,7 @@ module ID_EX (
             Memwrite <= 1'b0;
             ALUsrc <= 1'b0;
             pc_rs1_sel <= 1'b0;
-            pc_ex <= 32'b0;
+            pc <= 32'b0;
             data1 <= 32'b0;
             data2 <= 32'b0;
             immediate <= 32'b0;
@@ -59,7 +59,7 @@ module ID_EX (
             Memwrite <= 1'b0;
             ALUsrc <= 1'b0;
             pc_rs1_sel <= 1'b0;
-            pc_ex <= 32'b0;
+            pc <= 32'b0;
             data1 <= 32'b0;
             data2 <= 32'b0;
             immediate <= 32'b0;
@@ -74,7 +74,7 @@ module ID_EX (
             Memwrite <= Memwrite_ctrl;
             ALUsrc <= ALUsrc_ctrl;
             pc_rs1_sel <= pc_rs1_sel_ctrl;
-            pc_ex <= pc_id;
+            pc <= pc_id;
             data1 <= read_data1_id;
             data2 <= read_data2_id;
             immediate <= immediate_id;

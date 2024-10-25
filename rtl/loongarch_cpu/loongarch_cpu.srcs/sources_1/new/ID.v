@@ -10,6 +10,7 @@ module ID (
     input [31:0]    write_data,
     input [4:0]     reg_rd,
     output wire [5:0]    main_ctrl,
+    output wire [31:0]   pc,
     output wire [31:0]   read_data1_id,
     output wire [31:0]   read_data2_id,
     output wire [31:0]   instruction,
@@ -22,6 +23,7 @@ module ID (
     wire [4:0] reg_rs1;
     wire [4:0] reg_rs2;
     wire [5:0] ctrl_signal;
+    assign pc = pc_id;
     assign instruction = instruction_id;
     assign IF_ID_reg_rs1 = reg_rs1;
     assign IF_ID_reg_rs2 = reg_rs2;
