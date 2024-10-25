@@ -67,8 +67,5 @@ module ID (
         .ctrl_signal(ctrl_signal),
         .main_ctrl(main_ctrl)
     );
-
-
-
     
 endmodule
