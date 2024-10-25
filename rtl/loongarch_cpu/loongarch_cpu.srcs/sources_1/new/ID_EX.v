@@ -45,8 +45,8 @@ module ID_EX (
             ALUsrc <= 1'b0;
             pc_rs1_sel <= 1'b0;
             pc_ex <= 32'b0;
-            read_data1 <= 32'b0;
-            read_data2 <= 32'b0;
+            data1 <= 32'b0;
+            data2 <= 32'b0;
             immediate <= 32'b0;
             instruction <= 32'b0;
             ID_EX_reg_rs1 <= 5'b0;
@@ -60,8 +60,8 @@ module ID_EX (
             ALUsrc <= 1'b0;
             pc_rs1_sel <= 1'b0;
             pc_ex <= 32'b0;
-            read_data1 <= 32'b0;
-            read_data2 <= 32'b0;
+            data1 <= 32'b0;
+            data2 <= 32'b0;
             immediate <= 32'b0;
             instruction <= 32'b0;
             ID_EX_reg_rs1 <= 5'b0;
@@ -82,7 +82,6 @@ module ID_EX (
             ID_EX_reg_rs1 <= IF_ID_reg_rs1;
             ID_EX_reg_rs2 <= IF_ID_reg_rs2;
             ID_EX_reg_rd <= IF_ID_reg_rd;
-
         end
     end
     
