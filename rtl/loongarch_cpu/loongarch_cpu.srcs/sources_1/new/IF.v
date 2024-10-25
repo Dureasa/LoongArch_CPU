@@ -4,7 +4,7 @@ module IF (
     input               clk,
     input               PC_hold,
     input               rst_n,
-    input               jump,
+    input               PC_sel,
     input [31:0]        npc2,
     output wire [31:0]  pc_id,
     output wire [31:0]  instruction_id 
@@ -23,7 +23,7 @@ module IF (
     mux1 mux1_instance (
         .npc1(pc_id + 4),
         .npc2(npc2),
-        .jump(jump),
+        .PC_sel(PC_sel),
         .pc_in(pc_in) 
     );
 
