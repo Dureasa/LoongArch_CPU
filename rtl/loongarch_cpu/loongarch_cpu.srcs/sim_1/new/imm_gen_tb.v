@@ -1,87 +1,77 @@
 `timescale 1ns / 1ps
 
-module ID_tb;
-
+module testbench;
     // Inputs
-    reg clk;
-    reg rst_n;
-    reg Ctrl_clear;
-    reg Regwrite;
-    reg [31:0] pc_id;
-    reg [31:0] instruction_id;
-    reg [31:0] write_data;
-    reg [4:0] reg_rd;
+    reg [3:0] a;
+    reg [3:0] b;
+    reg signed [3:0] at;
+    reg signed [3:0] bt;
 
     // Outputs
-    wire [5:0] main_ctrl;
-    wire [31:0] read_data1_id;
-    wire [31:0] read_data2_id;
-    wire [31:0] instruction;
-    wire [31:0] immediate_id;
-    wire [4:0] IF_ID_reg_rs1;
-    wire [4:0] IF_ID_reg_rs2;
-    wire [4:0] IF_ID_reg_rd;
+    wire [3:0] c;
+    wire [3:0] ct;
 
-    // 实例化被测试模块
-    ID uut (
-        .clk(clk),
-        .rst_n(rst_n),
-        .Ctrl_clear(Ctrl_clear),
-        .Regwrite(Regwrite),
-        .pc_id(pc_id),
-        .instruction_id(instruction_id),
-        .write_data(write_data),
-        .reg_rd(reg_rd),
-        .main_ctrl(main_ctrl),
-        .read_data1_id(read_data1_id),
-        .read_data2_id(read_data2_id),
-        .instruction(instruction),
-        .immediate_id(immediate_id),
-        .IF_ID_reg_rs1(IF_ID_reg_rs1),
-        .IF_ID_reg_rs2(IF_ID_reg_rs2),
-        .IF_ID_reg_rd(IF_ID_reg_rd)
+    // Instantiate the Unit Under Test (UUT)
+    test uut (
+        .a(a), 
+        .b(b), 
+        .at(at), 
+        .bt(bt), 
+        .c(c), 
+        .ct(ct)
     );
 
-    // 时钟信号生成
     initial begin
-        clk = 0;
-        forever #5 clk = ~clk; // 产生周期为10ns的时钟信号
-    end
+        // Initialize Inputs
+        a = 0; b = 0; at = 0; bt = 0;
 
-    // 测试序列
-    initial begin
-        // 初始化输入
-        rst_n = 0; // 复位
-        Ctrl_clear = 0;
-        Regwrite = 0;
-        pc_id = 0;
-        instruction_id = 0;
-        write_data = 0;
-        reg_rd = 0;
-
-        // 等待几个时钟周期以稳定复位
+        // Wait for global reset
+        #100;
+        
+        // Add stimulus here
+        // Test case 1: a = at = 4'b0001, b = bt = 4'b0010
+        a = 4'b0001; at = 4'b0001; b = 4'b0010; bt = 4'b0010;
+        #10; // Wait for the outputs to be updated
+        
+        // Test case 2: a = at = 4'b0011, b = bt = 4'b0100
+        a = 4'b0011; at = 4'b0011; b = 4'b0100; bt = 4'b0100;
         #10;
-        rst_n = 1; // 释放复位
+        
+        // Test case 3: a = at = 4'b0101, b = bt = 4'b0110
+        a = 4'b0101; at = 4'b0101; b = 4'b0110; bt = 4'b0110;
         #10;
-
-        // 发送一些指令和数据
-        // 这里可以添加具体的测试案例，比如特定的指令和预期的行为
-        instruction_id = 32'h00000013; // 一个简单的系统指令，比如NOP
-        reg_rd = 5'd1; // 选择寄存器1作为写入目标
-        write_data = 32'h12345678; // 写入数据
-        Regwrite = 1; // 允许写入寄存器文件
+        
+        // Test case 4: a = at = 4'b0111, b = bt = 4'b1000
+        a = 4'b0111; at = 4'b0111; b = 4'b1000; bt = 4'b1000;
         #10;
-
-        // 模拟Ctrl_clear信号
-        Ctrl_clear = 1;
+        
+        // Test case 5: a = at = 4'b1010, b = bt = 4'b1011
+        a = 4'b1010; at = 4'b1010; b = 4'b1011; bt = 4'b1011;
         #10;
-        Ctrl_clear = 0;
+        
+        // Test case 6: a = at = 4'b1100, b = bt = 4'b1101
+        a = 4'b1100; at = 4'b1100; b = 4'b1101; bt = 4'b1101;
         #10;
-
-        // 更多测试案例...
-
-        // 测试结束
+        
+        // Test case 7: a = at = 4'b1101, b = bt = 4'b1110
+        a = 4'b1101; at = 4'b1101; b = 4'b1110; bt = 4'b1110;
+        #10;
+        
+        // Test case 8: a = at = 4'b1110, b = bt = 4'b1111
+        a = 4'b1110; at = 4'b1110; b = 4'b1111; bt = 4'b1111;
+        #10;
+        
+        // Test case 9: a = at = 4'b1111, b = bt = 4'b0000 (edge case)
+        a = 4'b1111; at = 4'b1111; b = 4'b0000; bt = 4'b0000;
+        #10;
+        
+        // End simulation
         $finish;
     end
-
+    
+    // Monitoring changes in inputs and outputs
+    initial begin
+        $monitor("Time = %t, a = %b, at = %b, b = %b, bt = %b, c = %b, ct = %b", 
+                 $time, a, at, b, bt, c, ct);
+    end
 endmodule

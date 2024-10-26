@@ -7,3 +7,5 @@ loongarch_cpu.runs/
 loongarch_cpu.xpr
 utils_1/
 ~$instructions.xlsx
+test.v
+imm_gen_tb.v
