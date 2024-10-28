@@ -6,8 +6,8 @@ module IF (
     input               PC_hold,
     input               PC_sel,
     input [31:0]        npc2,
-    output wire [31:0]  pc_id,
-    output wire [31:0]  instruction_id 
+    output wire [31:0]  pc_if,
+    output wire [31:0]  instruction_if 
 );
 
     wire [31:0] pc_in;
@@ -17,19 +17,19 @@ module IF (
         .PC_hold(PC_hold),
         .rst_n(rst_n),
         .pc_in(pc_in),
-        .pc_out(pc_id)
+        .pc_out(pc_if)
     );
 
     mux1 mux1_instance (
-        .npc1(pc_id + 4),
+        .npc1(pc_if + 4),
         .npc2(npc2),
         .PC_sel(PC_sel),
         .pc_in(pc_in) 
     );
 
     inst_mem inst_mem_instance (
-        .addr(pc_id),
-        .inst(instruction_id)
+        .addr(pc_if),
+        .inst(instruction_if)
     );
 
 endmodule

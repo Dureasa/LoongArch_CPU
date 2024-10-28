@@ -4,7 +4,7 @@ module mux1(
     input [31:0]        npc1,       // pc = pc + 4
     input [31:0]        npc2,       // pc = jump result
     input               PC_sel,     // control
-    output wire [31:0]  pc_in       // output: next pc
+    output reg [31:0]   pc_in       // output: next pc
 );
 
     always @(*) begin

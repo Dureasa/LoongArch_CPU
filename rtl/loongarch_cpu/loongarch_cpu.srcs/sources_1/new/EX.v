@@ -3,8 +3,8 @@
 module EX (
     input          ALUsrc,
     input          pc_rs1_sel,
-    input          ForwardA,
-    input          ForwardB,
+    input [1:0]    ForwardA,
+    input [1:0]    ForwardB,
     input [31:0]   pc,
     input [31:0]   data1,
     input [31:0]   data2,
@@ -12,10 +12,10 @@ module EX (
     input [31:0]   instruction,  
     input [31:0]   alu_data,
     input [31:0]   wb_data,
-    output reg          jump,
-    output reg [31:0]   npc2,
-    output reg [31:0]   result,
-    output reg [31:0]   mem_wdata
+    output wire          jump,
+    output wire [31:0]   npc2,
+    output wire [31:0]   result,
+    output reg [31:0]    mem_wdata
 );
 
     wire [31:0] operand1;       // mux4 to mux3 and alu
