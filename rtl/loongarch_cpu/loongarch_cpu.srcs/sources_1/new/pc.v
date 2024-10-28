@@ -13,7 +13,7 @@ module pc (
             // if reset is active
             pc_out <= 32'b0;
         end else if (PC_hold) begin
-            pc_out <= pc_out;
+            // hold
         end else begin
             // otherwise, update pc_out with pc_in
             pc_out <= pc_in;
