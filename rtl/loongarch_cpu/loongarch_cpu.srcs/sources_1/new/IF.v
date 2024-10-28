@@ -2,8 +2,8 @@
 
 module IF (
     input               clk,
-    input               PC_hold,
     input               rst_n,
+    input               PC_hold,
     input               PC_sel,
     input [31:0]        npc2,
     output wire [31:0]  pc_id,
