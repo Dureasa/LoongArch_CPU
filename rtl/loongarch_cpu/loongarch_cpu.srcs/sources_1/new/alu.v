@@ -5,7 +5,7 @@ module alu (
     input [31:0]    us_operand2,
     input [31:0]    pc,
     input [4:0]     alu_ctrl,
-    output signed reg [31:0]   result,
+    output reg signed [31:0]   result,
     output reg      jump
 );
 

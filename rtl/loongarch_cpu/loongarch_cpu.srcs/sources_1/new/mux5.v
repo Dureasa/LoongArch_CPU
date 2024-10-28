@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module mux4 (
+module mux5 (
     input [1:0]         ForwardB,     // control signal
     input [31:0]        rs_data2,
     input [31:0]        wb_data,
