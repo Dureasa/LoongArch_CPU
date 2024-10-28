@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module mux7 (
+module WB (
     input               Memtoreg,     // select signal
     input [31:0]        mem_data,
     input [31:0]        alu_data,
