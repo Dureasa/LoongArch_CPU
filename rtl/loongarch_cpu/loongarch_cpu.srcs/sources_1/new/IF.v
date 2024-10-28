@@ -21,7 +21,7 @@ module IF (
     );
 
     mux1 mux1_instance (
-        .npc1(pc_if + 4),
+        .npc1(pc_if + 1),
         .npc2(npc2),
         .PC_sel(PC_sel),
         .pc_in(pc_in) 
