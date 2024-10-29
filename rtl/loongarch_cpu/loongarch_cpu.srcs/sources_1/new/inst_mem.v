@@ -10,11 +10,17 @@ module inst_mem(
     
     // Initialize
     initial begin
-        mem[0] = 32'h02800401;
-        mem[1] = 32'h02800402;
-        mem[2] = 32'h02800403;
-        mem[3] = 32'h02800404;
-        mem[4] = 32'h02800405;
+        // mem[0] = 32'h02800401;
+        // mem[1] = 32'h02800401;
+        // mem[2] = 32'h02800401;
+        // mem[3] = 32'h02800401;
+        // mem[4] = 32'h02800401;
+        mem[0] = 32'h02803C01;
+        mem[1] = 32'h02BFFC21;
+        mem[2] = 32'h02BFFC21;
+        mem[3] = 32'h02BFFC21;
+        mem[4] = 32'h02BFFC21;
+        
         for (i = 5; i < 64; i = i + 1) begin
             mem[i] = 32'd0;
         end

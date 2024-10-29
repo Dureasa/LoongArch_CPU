@@ -146,7 +146,7 @@ EX ex_instance (
     .data2(data2),
     .immediate(immediate),
     .instruction(instruction),
-    .alu_data(alu_data),
+    .alu_data(alu_result),
     .wb_data(wb_data),
     .jump(jump),            // out 
     .npc2(npc2),
@@ -206,8 +206,8 @@ WB wb_instance (
 );
 
 forwarding_unit forwarding_unit_instance (
-    .IF_ID_reg_rs1(IF_ID_reg_rs1),
-    .IF_ID_reg_rs2(IF_ID_reg_rs2),
+    .IF_ID_reg_rs1(ID_EX_reg_rs1),
+    .IF_ID_reg_rs2(ID_EX_reg_rs2),
     .EX_MEM_reg_rd(EX_MEM_reg_rd),
     .MEM_WB_reg_rd(MEM_WB_reg_rd),
     .EX_MEM_Regwrite(Regwrite_mem),

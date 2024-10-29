@@ -21,15 +21,24 @@ module IF (
     );
 
     mux1 mux1_instance (
-        .npc1(pc_if + 1),
+        .npc1(pc_if + 4),
         .npc2(npc2),
         .PC_sel(PC_sel),
         .pc_in(pc_in) 
     );
 
-    inst_mem inst_mem_instance (
-        .addr(pc_if),
-        .inst(instruction_if)
+    // inst_mem inst_mem_instance (
+    //     .addr(pc_if),
+    //     .inst(instruction_if)
+    // );
+
+    instruction_memory U_IM (
+        .clka(clk),
+        .addra(pc_if), 
+        .dina(32'b0),
+        .douta(instruction_if),
+        .ena(1'b1),
+        .wea(4'b0)
     );
 
 endmodule
