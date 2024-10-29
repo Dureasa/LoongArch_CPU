@@ -9,3 +9,5 @@ utils_1/
 ~$instructions.xlsx
 test.v
 sim_1/
+loongarch_cpu.gen/
+ip/
