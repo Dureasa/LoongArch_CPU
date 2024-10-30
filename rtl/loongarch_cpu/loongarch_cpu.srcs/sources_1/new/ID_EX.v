@@ -13,6 +13,10 @@ module ID_EX (
     input [4:0]     IF_ID_reg_rs1,
     input [4:0]     IF_ID_reg_rs2,
     input [4:0]     IF_ID_reg_rd,
+    // add Forwarding logic
+    input [31:0]    write_data,
+    input [31:0]    reg_rd,
+    input           reg_Regwrite,
     output reg          Memtoreg,
     output reg          Regwrite,
     output reg          Memread,
@@ -26,7 +30,11 @@ module ID_EX (
     output reg [31:0]   instruction,   // use for alu control
     output reg [4:0]    ID_EX_reg_rs1,
     output reg [4:0]    ID_EX_reg_rs2,
-    output reg [4:0]    ID_EX_reg_rd 
+    output reg [4:0]    ID_EX_reg_rd,
+    // add Forwarding logic
+    output reg [31:0]   IF_ID_reg_rd_forwarding,
+    output reg [31:0]   reg_data,
+    output reg          IF_ID_Regwrite
 );
 
     wire Memtoreg_ctrl = main_ctrl[5];
@@ -51,7 +59,10 @@ module ID_EX (
             instruction <= 32'b0;
             ID_EX_reg_rs1 <= 5'b0;
             ID_EX_reg_rs2 <= 5'b0;
-            ID_EX_reg_rd <= 5'b0;            
+            ID_EX_reg_rd <= 5'b0;   
+            IF_ID_Regwrite <= 0;
+            reg_data <= 32'b0;
+            IF_ID_reg_rd_forwarding <= 32'b0;         
         end else if (ID_EX_clear) begin
             Memtoreg <= 1'b0;
             Regwrite <= 1'b0;
@@ -67,6 +78,9 @@ module ID_EX (
             ID_EX_reg_rs1 <= 5'b0;
             ID_EX_reg_rs2 <= 5'b0;
             ID_EX_reg_rd <= 5'b0;
+            IF_ID_Regwrite <= 0;
+            reg_data <= 32'b0;
+            IF_ID_reg_rd_forwarding <= 32'b0;
         end else begin
             Memtoreg <= Memtoreg_ctrl;
             Regwrite <= Regwrite_ctrl;
@@ -82,6 +96,9 @@ module ID_EX (
             ID_EX_reg_rs1 <= IF_ID_reg_rs1;
             ID_EX_reg_rs2 <= IF_ID_reg_rs2;
             ID_EX_reg_rd <= IF_ID_reg_rd;
+            IF_ID_Regwrite <= reg_Regwrite;
+            reg_data <= write_data;
+            IF_ID_reg_rd_forwarding <= reg_rd;            
         end
     end
     

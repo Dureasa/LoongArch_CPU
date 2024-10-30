@@ -5,6 +5,7 @@ module mux4 (
     input [31:0]        rs_data1,
     input [31:0]        wb_data,
     input [31:0]        alu_data,
+    input [31:0]        reg_data,
     output reg [31:0]   operand1      // 1st data for ALU
 );
 
@@ -13,6 +14,8 @@ module mux4 (
             operand1 = wb_data;
         end else if (ForwardA == 2'b10) begin
             operand1 = alu_data;
+        end else if (ForwardA == 2'b11) begin
+            operand1 = reg_data;
         end else begin
             operand1 = rs_data1;
         end

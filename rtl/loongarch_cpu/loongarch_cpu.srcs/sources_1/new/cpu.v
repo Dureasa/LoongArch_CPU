@@ -63,6 +63,9 @@ wire [4:0]  MEM_WB_reg_rd;
 wire        ID_EX_clear;
 wire        ID_EX_clear1;
 wire        ID_EX_clear2;
+wire [31:0] IF_ID_reg_rd_forwarding;
+wire [31:0] reg_data;
+wire        IF_ID_Regwrite;
 
 assign ID_EX_clear = ID_EX_clear1 | ID_EX_clear2;
 
@@ -120,6 +123,9 @@ ID_EX id_ex_instance (
     .IF_ID_reg_rs1(IF_ID_reg_rs1),
     .IF_ID_reg_rs2(IF_ID_reg_rs2),
     .IF_ID_reg_rd(IF_ID_reg_rd),
+    .write_data(write_data),
+    .reg_rd(MEM_WB_reg_rd),
+    .reg_Regwrite(Regwrite),
     .Memtoreg(Memtoreg_ex),            // out
     .Regwrite(Regwrite_ex),
     .Memread(Memread_ex),
@@ -133,7 +139,11 @@ ID_EX id_ex_instance (
     .instruction(instruction),
     .ID_EX_reg_rs1(ID_EX_reg_rs1),
     .ID_EX_reg_rs2(ID_EX_reg_rs2),
-    .ID_EX_reg_rd(ID_EX_reg_rd)
+    .ID_EX_reg_rd(ID_EX_reg_rd),
+    // Forwarding
+    .IF_ID_reg_rd_forwarding(IF_ID_reg_rd_forwarding),
+    .reg_data(reg_data),
+    .IF_ID_Regwrite(IF_ID_Regwrite)
 );
 
 EX ex_instance (
@@ -144,6 +154,7 @@ EX ex_instance (
     .pc(pc),
     .data1(data1),
     .data2(data2),
+    .reg_data(reg_data),
     .immediate(immediate),
     .instruction(instruction),
     .alu_data(alu_result),
@@ -206,12 +217,14 @@ WB wb_instance (
 );
 
 forwarding_unit forwarding_unit_instance (
-    .IF_ID_reg_rs1(ID_EX_reg_rs1),
-    .IF_ID_reg_rs2(ID_EX_reg_rs2),
+    .ID_EX_reg_rs1(ID_EX_reg_rs1),
+    .ID_EX_reg_rs2(ID_EX_reg_rs2),
+    .IF_ID_reg_rd(IF_ID_reg_rd_forwarding),
     .EX_MEM_reg_rd(EX_MEM_reg_rd),
     .MEM_WB_reg_rd(MEM_WB_reg_rd),
     .EX_MEM_Regwrite(Regwrite_mem),
     .MEM_WB_Regwrite(Regwrite),
+    .IF_ID_Regwrite(IF_ID_Regwrite),
     .ForwardA(ForwardA),
     .ForwardB(ForwardB)
 );

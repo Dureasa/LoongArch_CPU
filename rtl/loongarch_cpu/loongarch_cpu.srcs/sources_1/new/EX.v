@@ -12,6 +12,7 @@ module EX (
     input [31:0]   instruction,  
     input [31:0]   alu_data,
     input [31:0]   wb_data,
+    input [31:0]   reg_data,
     output wire          jump,
     output wire [31:0]   npc2,
     output wire [31:0]   result,
@@ -28,6 +29,7 @@ module EX (
         .ForwardA(ForwardA),
         .rs_data1(data1),
         .wb_data(wb_data),
+        .reg_data(reg_data),
         .alu_data(alu_data),
         .operand1(operand1)
     );
@@ -48,6 +50,7 @@ module EX (
     mux5 u_mux5(
         .ForwardB(ForwardB),
         .rs_data2(data2),
+        .reg_data(reg_data),
         .wb_data(wb_data),
         .alu_data(alu_data),
         .operand2_tmp(operand2_tmp)
