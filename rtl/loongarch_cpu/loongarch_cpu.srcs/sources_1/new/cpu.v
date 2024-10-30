@@ -147,7 +147,7 @@ EX ex_instance (
     .immediate(immediate),
     .instruction(instruction),
     .alu_data(alu_result),
-    .wb_data(wb_data),
+    .wb_data(write_data),
     .jump(jump),            // out 
     .npc2(npc2),
     .result(result),
