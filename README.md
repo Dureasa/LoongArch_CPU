@@ -1,5 +1,5 @@
 # LoongArch_CPU
 
-A simple five-level pipeline processor written in Verilog language(based on *LoongArch*).
+一个用Verilog语言实现的五级流水线处理器，包括24条指令。
 
 ### Updating...
