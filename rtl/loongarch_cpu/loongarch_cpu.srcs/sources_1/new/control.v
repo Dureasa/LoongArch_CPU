@@ -13,7 +13,7 @@ module control (
                 ctrl_signal = 6'b010010;        
             end
             `BEQ, `BNE, `BLT, `BGE, `BLTU, `BGEU: begin
-                ctrl_signal = 6'b000010;  
+                ctrl_signal = 6'b000000;  
             end
             `JIRL: begin
                 ctrl_signal = 6'b010011;               

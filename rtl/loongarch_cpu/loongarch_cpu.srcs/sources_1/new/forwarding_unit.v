@@ -24,7 +24,6 @@ module forwarding_unit (
         ForwardA = 2'b00;
         ForwardB = 2'b00;
 
-        // 设置ForwardA和ForwardB的值
         if (ex_a) begin
             ForwardA = 2'b10;
         end else if (mem_a) begin
