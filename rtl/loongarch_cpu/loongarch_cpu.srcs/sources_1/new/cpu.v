@@ -2,7 +2,9 @@
 
 module cpu (
     input clk,
-    input rst_n
+    input rst_n,
+    output wire [7:0] seg_output,
+    output wire [3:0] an_output
 );
 
 wire [31:0] pc;
@@ -67,6 +69,9 @@ wire [31:0] IF_ID_reg_rd_forwarding;
 wire [31:0] reg_data;
 wire        IF_ID_Regwrite;
 
+wire [31:0] reg_value;
+assign reg_value = id_instance.u_reg_file.gr[1];
+
 assign ID_EX_clear = ID_EX_clear1 | ID_EX_clear2;
 
 IF if_instance (
@@ -96,9 +101,10 @@ ID id_instance (
     .Ctrl_clear(Ctrl_clear),
     .Regwrite(Regwrite),
     .pc_id(pc_id),
-    .instruction_id(instruction_id),
+    .instruction_id_tmp(instruction_if),
     .write_data(write_data),
     .reg_rd(MEM_WB_reg_rd),
+    .IF_ID_clear(IF_ID_clear),
     .main_ctrl(main_ctrl),          // out
     .pc(pc_id_t),
     .read_data1_id(read_data1_id),
@@ -245,6 +251,14 @@ jump_ctrl_unit jump_ctrl_unit_instance (
     .IF_ID_clear_jmp(IF_ID_clear),
     .Ctrl_clear(Ctrl_clear),
     .ID_EX_clear_jmp(ID_EX_clear2)
+);
+
+Four_LED U_Four_LED(
+    .clock(clk),
+    .reset(rst_n),
+    .result(reg_value),
+    .enable(an_output),
+    .dispcode(seg_output)
 );
     
 endmodule

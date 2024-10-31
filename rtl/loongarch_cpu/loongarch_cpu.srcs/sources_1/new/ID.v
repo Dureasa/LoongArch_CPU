@@ -6,9 +6,10 @@ module ID (
     input           Ctrl_clear,
     input           Regwrite,
     input [31:0]    pc_id,
-    input [31:0]    instruction_id,
+    input [31:0]    instruction_id_tmp,
     input [31:0]    write_data,
     input [4:0]     reg_rd,
+    input           IF_ID_clear,
     output wire [5:0]    main_ctrl,
     output wire [31:0]   pc,
     output wire [31:0]   read_data1_id,
@@ -20,9 +21,13 @@ module ID (
     output wire [4:0]    IF_ID_reg_rd
 );
 
+    wire [31:0] instruction_id;
+
     wire [4:0] reg_rs1;
     wire [4:0] reg_rs2;
     wire [5:0] ctrl_signal;
+    wire       inst_clear;
+    assign instruction_id = (inst_clear) ? 32'b0 : instruction_id_tmp;
     assign pc = pc_id;
     assign instruction = instruction_id;
     assign IF_ID_reg_rs1 = reg_rs1;
@@ -68,6 +73,13 @@ module ID (
         .Ctrl_clear(Ctrl_clear),
         .ctrl_signal(ctrl_signal),
         .main_ctrl(main_ctrl)
+    );
+
+    reg1 u_reg1 (
+        .clk(clk),
+        .rst_n(rst_n),
+        .IF_ID_clear(IF_ID_clear),
+        .inst_clear(inst_clear)
     );
     
 endmodule

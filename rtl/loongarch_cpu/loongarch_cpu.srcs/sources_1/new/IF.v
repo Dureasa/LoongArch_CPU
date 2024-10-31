@@ -27,18 +27,18 @@ module IF (
         .pc_in(pc_in) 
     );
 
-    inst_mem inst_mem_instance (
-        .addr(pc_if),
-        .inst(instruction_if)
-    );
-
-    // instruction_memory U_IM (
-    //     .clka(clk),
-    //     .addra(pc_if), 
-    //     .dina(32'b0),
-    //     .douta(instruction_if),
-    //     .ena(1'b1),
-    //     .wea(4'b0)
+    // inst_mem inst_mem_instance (
+    //     .addr(pc_if),
+    //     .inst(instruction_if)
     // );
+
+    instruction_memory U_IM (
+        .clka(clk),
+        .addra(pc_if), 
+        .dina(32'b0),
+        .douta(instruction_if),
+        .ena(1'b1),
+        .wea(4'b0)
+    );
 
 endmodule
