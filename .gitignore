@@ -11,4 +11,5 @@ test.v
 sim_1/
 loongarch_cpu.gen/
 ip/
-doc/datapath.png
+datapath.png
+.gitignore
